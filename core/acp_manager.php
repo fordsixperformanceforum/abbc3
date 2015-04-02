@@ -261,7 +261,7 @@ class acp_manager
 	 */
 	public function resynchronize_bbcode_order()
 	{
-		$this->db->sql_transaction('commit');
+		$this->db->sql_transaction('begin');
 
 		// By default, check that order is valid and fix it if necessary
 		$sql = 'SELECT bbcode_id, bbcode_order
@@ -345,12 +345,12 @@ class acp_manager
 				$sql = 'SELECT MAX(bbcode_id) AS max_bbcode_id
 					FROM ' . BBCODES_TABLE;
 				$result = $this->db->sql_query($sql);
-				$row = $this->db->sql_fetchrow($result);
+				$max_bbcode_id = $this->db->sql_fetchfield('max_bbcode_id');
 				$this->db->sql_freeresult($result);
 
-				if ($row)
+				if ($max_bbcode_id)
 				{
-					$bbcode_id = $row['max_bbcode_id'] + 1;
+					$bbcode_id = $max_bbcode_id + 1;
 
 					// Make sure it is greater than the core BBCode ids...
 					if ($bbcode_id <= NUM_CORE_BBCODES)
