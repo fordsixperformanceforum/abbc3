@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [English]
+* Advanced BBCode Box 3.1 [Greek]
 *
 * Greek translation by the_observer April 2015(gnikits@gmail.com)
 *
@@ -84,6 +84,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'Video Πλάτος x Ύψος',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Προεπιλογές Μεγέθους',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'URL ιστοσελίδας',
+	'ABBC3_URL_DESCRIPTION'		=> 'Προαιρετική περιγραφή',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Η σειρά των BBCode ενημερώθηκε.',

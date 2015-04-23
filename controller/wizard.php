@@ -91,6 +91,12 @@ class wizard
 					return $this->helper->render('abbc3_bbvideo_wizard.html');
 
 				break;
+
+				case 'url':
+
+					return $this->helper->render('abbc3_url_wizard.html');
+
+				break;
 			}
 		}
 
