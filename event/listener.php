@@ -98,6 +98,9 @@ class listener implements EventSubscriberInterface
 
 			// text_formatter events
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
+
+			// BBCode FAQ
+			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 		);
 	}
 
@@ -224,6 +227,65 @@ class listener implements EventSubscriberInterface
 			{
 				$bbcode_name = rtrim($bbcode_name, '=');
 				$service->disable_bbcode($bbcode_name);
+			}
+		}
+	}
+
+	/**
+	 * Add ABBC3 BBCodes to the BBCode FAQ
+	 *
+	 * @param object $event The event object
+	 * @return null
+	 * @access public
+	 */
+	public function add_bbcode_faq($event)
+	{
+		// Add after the HELP_BBCODE_BLOCK_OTHERS block
+		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
+		{
+			// Set the block template data
+			$this->template->assign_block_vars('faq_block', array(
+				'BLOCK_TITLE'	=> $this->user->lang('ABBC3_FAQ_TITLE'),
+				'SWITCH_COLUMN'	=> false,
+			));
+
+			$abbc3_questions = array(
+				'ABBC3_FONT_HELPLINE'		=> "[font=Comic Sans MS]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/font]",
+				'ABBC3_HIGHLIGHT_HELPLINE'	=> "[highlight=yellow]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/highlight]",
+				'ABBC3_ALIGN_HELPLINE'		=> "[align=center]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/align]",
+				'ABBC3_FLOAT_HELPLINE'		=> "[float=right]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/float]",
+				'ABBC3_STRIKE_HELPLINE'		=> "[s]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/s]",
+				'ABBC3_SUB_HELPLINE'		=> "[sub]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/sub] {$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}",
+				'ABBC3_SUP_HELPLINE'		=> "[sup]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/sup] {$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}",
+				'ABBC3_GLOW_HELPLINE'		=> "[glow=red]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/glow]",
+				'ABBC3_SHADOW_HELPLINE'		=> "[shadow=blue]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/shadow]",
+				'ABBC3_DROPSHADOW_HELPLINE'	=> "[dropshadow=blue]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/dropshadow]",
+				'ABBC3_BLUR_HELPLINE'		=> "[blur=blue]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/blur]",
+				'ABBC3_FADE_HELPLINE'		=> "[fade]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/fade]",
+				'ABBC3_PREFORMAT_HELPLINE'	=> "[pre]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}\n\t{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/pre]",
+				'ABBC3_DIR_HELPLINE'		=> "[dir=rtl]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/dir]",
+				'ABBC3_MARQUEE_HELPLINE'	=> "[marq=left]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/marq]",
+				'ABBC3_SPOILER_HELPLINE'	=> "[spoil]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/spoil]",
+				'ABBC3_HIDDEN_HELPLINE'		=> "[hidden]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/hidden]",
+				'ABBC3_MOD_HELPLINE'		=> "[mod=\"Moderator_name\"]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/mod]",
+				'ABBC3_OFFTOPIC_HELPLINE'	=> "[offtopic]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/offtopic]",
+				'ABBC3_NFO_HELPLINE'		=> '[nfo]༼ つ ◕_◕ ༽つ    ʕ•ᴥ•ʔ   ¯\_(ツ)_/¯[/nfo]',
+				'ABBC3_BBVIDEO_HELPLINE'	=> '[BBvideo=560,340]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
+			);
+
+			// Process questions data for display as parsed and unparsed bbcodes
+			foreach ($abbc3_questions as $key => $question)
+			{
+				$uid = $bitfield = $flags = '';
+				generate_text_for_storage($question, $uid, $bitfield, $flags, true);
+				$example = generate_text_for_edit($question, $uid, $flags);
+				$result = generate_text_for_display($question, $uid, $bitfield, $flags);
+				$title = explode(':', $this->user->lang($key), 2);
+
+				$this->template->assign_block_vars('faq_block.faq_row', array(
+					'FAQ_QUESTION'	=> $title[0],
+					'FAQ_ANSWER'	=> $this->user->lang('ABBC3_FAQ_ANSWER', $title[1], $example['text'], $result),
+				));
 			}
 		}
 	}

@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic message: [offtopic]نص[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'محازاة الى اليمين: [pre]نص[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'نص مظلل: [shadow=color]نص[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler message: [spoil]نص[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'نص يتوسطه خط: [s]نص[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'نص منخفض: [sub]نص[/sub]',
@@ -93,4 +93,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'تم تحديث BBCode المطلوب.',
 	'ABBC3_BBCODE_GROUP'		=> 'إدارة المجموعات التي يمكنها استعمال هذا الـ BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'إذا لم تحدد أي مجموعة، كل المستخدمين سيمكنهم استخدام هذا الـBBCode. استعمل CTRL+CLICK (أو CMD+CLICK في ماك) لتحديد/إلغاء تحديد أكثر من مجموعة واحدة.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
 ));
