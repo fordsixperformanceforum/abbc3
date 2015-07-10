@@ -249,7 +249,7 @@ class listener implements EventSubscriberInterface
 				'SWITCH_COLUMN'	=> false,
 			));
 
-			$abbc3_questions = array(
+			$abbc3_faq_data = array(
 				'ABBC3_FONT_HELPLINE'		=> "[font=Comic Sans MS]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/font]",
 				'ABBC3_HIGHLIGHT_HELPLINE'	=> "[highlight=yellow]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/highlight]",
 				'ABBC3_ALIGN_HELPLINE'		=> "[align=center]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/align]",
@@ -267,14 +267,14 @@ class listener implements EventSubscriberInterface
 				'ABBC3_MARQUEE_HELPLINE'	=> "[marq=left]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/marq]",
 				'ABBC3_SPOILER_HELPLINE'	=> "[spoil]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/spoil]",
 				'ABBC3_HIDDEN_HELPLINE'		=> "[hidden]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/hidden]",
-				'ABBC3_MOD_HELPLINE'		=> "[mod=\"Moderator_name\"]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/mod]",
+				'ABBC3_MOD_HELPLINE'		=> "[mod=\"{$this->user->lang('USERNAME')}\"]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/mod]",
 				'ABBC3_OFFTOPIC_HELPLINE'	=> "[offtopic]{$this->user->lang('ABBC3_FAQ_SAMPLE_TEXT')}[/offtopic]",
 				'ABBC3_NFO_HELPLINE'		=> '[nfo]༼ つ ◕_◕ ༽つ    ʕ•ᴥ•ʔ   ¯\_(ツ)_/¯[/nfo]',
-				'ABBC3_BBVIDEO_HELPLINE'	=> '[BBvideo=560,340]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
+				'ABBC3_BBVIDEO_HELPLINE'	=> "[BBvideo={$this->bbvideo_width},{$this->bbvideo_height}]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]",
 			);
 
-			// Process questions data for display as parsed and unparsed bbcodes
-			foreach ($abbc3_questions as $key => $question)
+			// Process faq data for display as parsed and unparsed bbcodes
+			foreach ($abbc3_faq_data as $key => $question)
 			{
 				$uid = $bitfield = $flags = '';
 				generate_text_for_storage($question, $uid, $bitfield, $flags, true);
