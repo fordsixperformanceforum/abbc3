@@ -36,7 +36,6 @@ class event_listener_test extends event_listener_base
 			'core.modify_format_display_text_after',
 			'core.modify_bbcode_init',
 			'core.text_formatter_s9e_parser_setup',
-			'core.help_manager_add_block_after',
 		), array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));
 	}
 }
