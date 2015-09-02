@@ -12,14 +12,17 @@ namespace vse\abbc3;
 
 class ext extends \phpbb\extension\base
 {
-	/** @var string Require 3.2.0-dev due to new faq controller route for bbcodes */
-	const PHPBB_MIN_VERSION = '3.2.0-dev';
+	/** @var string Require 3.1.3 due to throwing new exceptions
+	 *              and using containerAware migration files.
+	 */
+	const PHPBB_VERSION = '3.1.3';
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function is_enableable()
 	{
-		return phpbb_version_compare(PHPBB_VERSION, self::PHPBB_MIN_VERSION, '>=');
+		$config = $this->container->get('config');
+		return phpbb_version_compare($config['version'], self::PHPBB_VERSION, '>=');
 	}
 }
