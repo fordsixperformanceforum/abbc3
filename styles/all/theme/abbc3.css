@@ -59,6 +59,7 @@
 #abbc3_buttons select {
 	vertical-align: middle;
 	margin: 4px;
+	padding: 0;
 	height: 22px;
 	background-color: #fff !important;
 	border: 1px solid #b4bac0;
@@ -69,9 +70,7 @@
 	padding: 0;
 	min-width: 22px;
 	height: 22px;
-	background-color: transparent;
-	background-position: center;
-	background-repeat: no-repeat;
+	background: transparent no-repeat center;
 	border: 1px solid transparent;
 	font-size: 11px;
 }
