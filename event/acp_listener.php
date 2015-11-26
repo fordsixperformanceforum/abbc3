@@ -51,6 +51,8 @@ class acp_listener implements EventSubscriberInterface
 			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_custom_sorting_buttons',
 			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create',
 			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_group_select_box',
+
+			// text_formatter events (for phpBB 3.2.x)
 			'core.text_formatter_s9e_configure_after'	=> 's9e_store_bbcode_groups',
 		);
 	}
