@@ -19,7 +19,6 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	protected $db;
 	protected $user;
-	protected $root_path;
 	protected $ext_root_path;
 	protected $ext_manager;
 
@@ -38,14 +37,13 @@ class bbcodes_test extends \phpbb_database_test_case
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$lang = new \phpbb\language\language($lang_loader);
 		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
-		$this->root_path = $phpbb_root_path;
-		$this->ext_root_path = 'ext/vse/abbc3/';
+		$this->ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
 		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(dirname(__FILE__) . '/../../../../../phpBB/');
 	}
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->root_path, $this->ext_root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->ext_root_path);
 	}
 
 	public function bbcode_data()
