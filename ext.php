@@ -12,16 +12,17 @@ namespace vse\abbc3;
 
 class ext extends \phpbb\extension\base
 {
+	/** string Require 3.2.0 due to new FAQ controller helper. */
+	const PHPBB_MIN_VERSION = '3.2.0-dev';
 	const BBVIDEO_WIDTH = 560;
 	const BBVIDEO_HEIGHT = 315;
 
 	/**
-	 * Require 3.2.0 due to new FAQ controller helper.
-	 *
 	 * {@inheritdoc}
 	 */
 	public function is_enableable()
 	{
-		return phpbb_version_compare(PHPBB_VERSION, '3.2.0-dev', '>=');
+		$config = $this->container->get('config');
+		return phpbb_version_compare($config['version'], self::PHPBB_MIN_VERSION, '>=');
 	}
 }
