@@ -20,6 +20,9 @@ class acp_base extends \phpbb_database_test_case
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var \phpbb\group\helper */
+	protected $group_helper;
+
 	/** @var \phpbb\request\request|\PHPUnit_Framework_MockObject_MockObject */
 	protected $request;
 
@@ -42,12 +45,13 @@ class acp_base extends \phpbb_database_test_case
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$lang = new \phpbb\language\language($lang_loader);
 		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
+		$this->group_helper = new \phpbb\group\helper($lang);
 	}
 
 	protected function get_acp_manager()
 	{
 		global $phpbb_root_path, $phpEx;
 
-		return new \vse\abbc3\core\acp_manager($this->db, $this->request, $this->user, $phpbb_root_path, $phpEx);
+		return new \vse\abbc3\core\acp_manager($this->db, $this->group_helper, $this->request, $this->user, $phpbb_root_path, $phpEx);
 	}
 }

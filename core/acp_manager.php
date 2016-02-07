@@ -11,6 +11,7 @@
 namespace vse\abbc3\core;
 
 use phpbb\db\driver\driver_interface;
+use phpbb\group\helper;
 use phpbb\request\request;
 use phpbb\user;
 
@@ -21,6 +22,9 @@ class acp_manager
 {
 	/** @var driver_interface */
 	protected $db;
+
+	/** @var helper */
+	protected $group_helper;
 
 	/** @var request */
 	protected $request;
@@ -38,15 +42,17 @@ class acp_manager
 	 * Constructor
 	 *
 	 * @param driver_interface $db
+	 * @param helper           $group_helper
 	 * @param request          $request
 	 * @param user             $user
 	 * @param string           $phpbb_root_path
 	 * @param string           $php_ext
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, request $request, user $user, $phpbb_root_path, $php_ext)
+	public function __construct(driver_interface $db, helper $group_helper, request $request, user $user, $phpbb_root_path, $php_ext)
 	{
 		$this->db = $db;
+		$this->group_helper = $group_helper;
 		$this->request = $request;
 		$this->user = $user;
 		$this->phpbb_root_path = $phpbb_root_path;
@@ -249,7 +255,7 @@ class acp_manager
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$selected = (is_array($select_id)) ? ((in_array($row['group_id'], $select_id)) ? ' selected="selected"' : '') : (($row['group_id'] == $select_id) ? ' selected="selected"' : '');
-			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . (($row['group_type'] == GROUP_SPECIAL) ? $this->user->lang('G_' . $row['group_name']) : $row['group_name']) . '</option>';
+			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . $this->group_helper->get_name($row['group_name']) . '</option>';
 		}
 		$this->db->sql_freeresult($result);
 

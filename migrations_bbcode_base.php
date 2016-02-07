@@ -28,13 +28,16 @@ abstract class migrations_bbcode_base extends container_aware_migration
 	 */
 	public function install_abbc3_bbcodes()
 	{
+		/** @var \phpbb\group\helper $group_helper */
+		$group_helper = $this->container->get('group_helper');
+
 		/** @var \phpbb\request\request $request */
 		$request = $this->container->get('request');
 
 		/** @var \phpbb\user $user */
 		$user = $this->container->get('user');
 
-		$acp_manager = new \vse\abbc3\core\acp_manager($this->db, $request, $user, $this->phpbb_root_path, $this->php_ext);
+		$acp_manager = new \vse\abbc3\core\acp_manager($this->db, $group_helper, $request, $user, $this->phpbb_root_path, $this->php_ext);
 		$acp_manager->install_bbcodes($this->bbcode_data);
 	}
 }
