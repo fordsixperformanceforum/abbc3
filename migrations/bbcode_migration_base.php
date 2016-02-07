@@ -8,7 +8,7 @@
  *
  */
 
-namespace vse\abbc3;
+namespace vse\abbc3\migrations;
 
 use \phpbb\db\migration\container_aware_migration;
 
@@ -18,7 +18,7 @@ use \phpbb\db\migration\container_aware_migration;
  * since this is not a migration file. It's just a wrapper that
  * can be extended by multiple migration files.
  */
-abstract class migrations_bbcode_base extends container_aware_migration
+abstract class bbcode_migration_base extends container_aware_migration
 {
 	/** @var array An array of bbcodes data to install */
 	protected $bbcode_data;

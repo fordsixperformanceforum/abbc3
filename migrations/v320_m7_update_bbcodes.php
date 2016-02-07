@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\migrations;
 
-class v320_m7_update_bbcodes extends \vse\abbc3\migrations_bbcode_base
+class v320_m7_update_bbcodes extends bbcode_migration_base
 {
 	/**
 	 * {@inheritdoc}
