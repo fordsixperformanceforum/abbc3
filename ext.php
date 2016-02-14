@@ -12,10 +12,11 @@ namespace vse\abbc3;
 
 class ext extends \phpbb\extension\base
 {
-	/** string Require 3.2.0-b1 due to INCLUDECSS and migration helper updates. */
-	const PHPBB_MIN_VERSION = '3.2.0-b1';
 	const BBVIDEO_WIDTH = 560;
 	const BBVIDEO_HEIGHT = 315;
+
+	/** string Require 3.2.0-b1 due to INCLUDECSS and migration helper updates. */
+	const PHPBB_MIN_VERSION = '3.2.0-b1';
 
 	/**
 	 * {@inheritdoc}
