@@ -6,6 +6,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/VSEphpbb/abbc3/develop-3.2.x.svg?style=flat)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=develop-3.2.x)
 [![Code Coverage](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/badges/coverage.png?b=develop-3.2.x)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=develop-3.2.x)
 [![Dev dependencies](https://img.shields.io/david/VSEphpbb/abbc3.svg?style=flat)](https://david-dm.org/VSEphpbb/abbc3#info=devDependencies)
+[![Latest Stable Version](https://poser.pugx.org/vse/abbc3/v/stable)](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/)
 
 ## Features:
 * Customizable icon-based BBCode toolbar
