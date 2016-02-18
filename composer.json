@@ -18,9 +18,6 @@
 		"phpbb/phpbb": ">=3.2.0-b1",
 		"composer/installers": "~1.0"
 	},
-	"require-dev": {
-		"phpbb/epv": "dev-master"
-	},
 	"extra": {
 		"display-name": "Advanced BBCode Box",
 		"soft-require": {
