@@ -13,6 +13,6 @@ NOTESTS=$1
 if [ "$NOTESTS" == "1" ]
 then
 	cd phpBB
-	composer require phpbb/epv:dev-master --dev --no-interaction --prefer-source
+	composer require phpbb/epv:dev-master --dev --no-interaction
 	cd ../
 fi
