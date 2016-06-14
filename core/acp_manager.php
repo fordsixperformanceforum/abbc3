@@ -74,7 +74,7 @@ class acp_manager
 		$this->db->sql_freeresult($result);
 
 		// First one can't be moved up
-		if ($current_order <= 1 && $action == 'move_up')
+		if ($current_order <= 1 && $action === 'move_up')
 		{
 			return;
 		}
@@ -160,7 +160,7 @@ class acp_manager
 	public function get_bbcode_group_form_data()
 	{
 		$bbcode_group = $this->request->variable('bbcode_group', array(0));
-		$bbcode_group = (!sizeof($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
+		$bbcode_group = (!count($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
 
 		return $bbcode_group;
 	}
@@ -214,7 +214,7 @@ class acp_manager
 	 * @return string HTML markup of user groups select box for the form
 	 * @access public
 	 */
-	public function bbcode_group_select_options($select_id = array())
+	public function bbcode_group_select_options(array $select_id = array())
 	{
 		// Get all groups except bots
 		$sql = 'SELECT group_id, group_name, group_type
@@ -226,7 +226,7 @@ class acp_manager
 		$group_options = '';
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$selected = (in_array($row['group_id'], $select_id)) ? ' selected="selected"' : '';
+			$selected = in_array($row['group_id'], $select_id) ? ' selected="selected"' : '';
 			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . $this->group_helper->get_name($row['group_name']) . '</option>';
 		}
 		$this->db->sql_freeresult($result);
@@ -287,7 +287,7 @@ class acp_manager
 	 */
 	protected function increment($action)
 	{
-		return ($action == 'move_up') ? -1 : 1;
+		return ($action === 'move_up') ? -1 : 1;
 	}
 
 	/**

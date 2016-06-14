@@ -71,8 +71,9 @@ class bbcodes_display
 		}
 
 		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
+		$images_key = 'ext/' . $bbcode_img;
 
-		$custom_tags['BBCODE_IMG'] = (isset($images['ext/' . $bbcode_img])) ? 'ext/vse/' . $bbcode_img : '';
+		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
 		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
 
 		return $custom_tags;
@@ -104,7 +105,7 @@ class bbcodes_display
 	/**
 	 * Determine if a user is in a group allowed to use a custom BBCode
 	 *
-	 * @param string $group_ids Allowed group IDs, comma separated
+	 * @param string|array $group_ids Allowed group IDs, comma separated string or array
 	 * @return bool Return true if allowed to use BBCode
 	 * @access public
 	 */
@@ -121,7 +122,7 @@ class bbcodes_display
 			// Load the user's group memberships
 			$this->load_memberships();
 
-			return (bool) sizeof(array_intersect($this->memberships, $group_ids));
+			return (bool) count(array_intersect($this->memberships, $group_ids));
 		}
 
 		// If we get here, there were no group restrictions so everyone can use this BBCode

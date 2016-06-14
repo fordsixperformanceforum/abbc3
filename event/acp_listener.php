@@ -60,7 +60,7 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Add some additional elements to the BBCodes template
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -78,13 +78,13 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Add the Group select form field on BBCode edit page
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
 	public function acp_bbcodes_group_select_box($event)
 	{
-		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : array();
+		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : array();
 
 		$tpl_ary = $event['tpl_ary'];
 		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->bbcode_group_select_options($bbcode_group);
@@ -94,7 +94,7 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Handle BBCode order changes when moving them up/down
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -127,7 +127,7 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Handle BBCode order and group data during modify/create routines
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -136,7 +136,7 @@ class acp_listener implements EventSubscriberInterface
 		$sql_ary = $event['sql_ary'];
 
 		// Set a new BBCode order value on create
-		if ($event['action'] == 'create')
+		if ($event['action'] === 'create')
 		{
 			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_bbcode_order() + 1;
 		}
@@ -157,7 +157,7 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Store BBCode groups in a s9e\TextFormatter variable
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */

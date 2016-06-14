@@ -104,13 +104,13 @@ class bbcodes_installer extends acp_manager
 	{
 		$data = $this->acp_bbcodes->build_regexp($bbcode_data['bbcode_match'], $bbcode_data['bbcode_tpl']);
 
-		$bbcode_data += array(
+		$bbcode_data = array_replace($bbcode_data, array(
 			'bbcode_tag'          => $data['bbcode_tag'],
 			'first_pass_match'    => $data['first_pass_match'],
 			'first_pass_replace'  => $data['first_pass_replace'],
 			'second_pass_match'   => $data['second_pass_match'],
 			'second_pass_replace' => $data['second_pass_replace'],
-		);
+		));
 
 		return $bbcode_data;
 	}
@@ -183,7 +183,7 @@ class bbcodes_installer extends acp_manager
 		{
 			$bbcode_data['bbcode_id'] = (int) $bbcode_id;
 			// set display_on_posting to 1 by default, so if 0 is desired, set it in our data array
-			$bbcode_data['display_on_posting'] = (int) !isset($bbcode_data['display_on_posting']);
+			$bbcode_data['display_on_posting'] = (int) !array_key_exists('display_on_posting', $bbcode_data);
 
 			$this->db->sql_query('INSERT INTO ' . BBCODES_TABLE . ' ' . $this->db->sql_build_array('INSERT', $bbcode_data));
 		}
